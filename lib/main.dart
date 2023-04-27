@@ -16,18 +16,18 @@ Future<void> main() async {
   } on CameraException catch (e) {
     log('Error: $e.code\nError Message: $e.message');
   }
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeScreen(cameras),
-      //home: MainScreen(cameras),
       routes: {
         MainScreen.id: (context) => MainScreen(cameras),
-        //DemoScreen.id: (context) => DemoScreen(),
       },
     );
   }

@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
+
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -9,10 +10,11 @@ class Camera extends StatefulWidget {
   final List<CameraDescription> cameras;
   final Callback setRecognitions;
 
-  const Camera({super.key, required this.cameras, required this.setRecognitions});
+  const Camera(
+      {super.key, required this.cameras, required this.setRecognitions});
 
   @override
-  _CameraState createState() => new _CameraState();
+  State<Camera> createState() => _CameraState();
 }
 
 class _CameraState extends State<Camera> {
@@ -26,7 +28,7 @@ class _CameraState extends State<Camera> {
     if (widget.cameras == null || widget.cameras.length < 1) {
       print('No camera is found');
     } else {
-      controller =  CameraController(
+      controller = CameraController(
         widget.cameras[1],
         ResolutionPreset.high,
       );
@@ -40,7 +42,7 @@ class _CameraState extends State<Camera> {
           if (!isDetecting) {
             isDetecting = true;
 
-            int startTime =  DateTime.now().millisecondsSinceEpoch;
+            int startTime = DateTime.now().millisecondsSinceEpoch;
 
             Tflite.runPoseNetOnFrame(
               bytesList: img.planes.map((plane) {
@@ -54,7 +56,7 @@ class _CameraState extends State<Camera> {
               threshold: 0.1,
               nmsRadius: 10,
             ).then((recognitions) {
-              int endTime =  DateTime.now().millisecondsSinceEpoch;
+              int endTime = DateTime.now().millisecondsSinceEpoch;
               print("Detection took ${endTime - startTime}");
 
               widget.setRecognitions(recognitions!, img.height, img.width);

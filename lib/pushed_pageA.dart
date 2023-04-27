@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
 import 'dart:math';
+
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 
 import 'services/camera.dart';
 import 'services/render_data_arm_press.dart';
-
 
 class PushedPageA extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -16,7 +16,7 @@ class PushedPageA extends StatefulWidget {
 }
 
 class _PushedPageAState extends State<PushedPageA> {
-  List<dynamic> _data=[];
+  List<dynamic> _data = [];
   int _imageHeight = 0;
   int _imageWidth = 0;
   int x = 1;

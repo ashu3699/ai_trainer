@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
 import 'dart:math';
+
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 
 import 'services/camera.dart';
 import 'services/render_data.dart';
@@ -15,7 +16,7 @@ class PushedPageS extends StatefulWidget {
 }
 
 class _PushedPageSState extends State<PushedPageS> {
-  List<dynamic> _data=[];
+  List<dynamic> _data = [];
   int _imageHeight = 0;
   int _imageWidth = 0;
   int x = 1;

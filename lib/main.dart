@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 
-import 'main_screen.dart';
 import 'home_screen.dart';
+import 'main_screen.dart';
 
-List<CameraDescription> cameras=[];
+List<CameraDescription> cameras = [];
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
-    print('Error: $e.code\nError Message: $e.message');
+    log('Error: $e.code\nError Message: $e.message');
   }
   runApp(MyApp());
 }
